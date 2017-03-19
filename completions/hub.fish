@@ -2,23 +2,18 @@ function __fish_is_arg_n --argument-names n
     test $n -eq (count (string match -v -- '-*' (commandline -poc)))
 end
 
-function __fish_is_subcommand
-    __fish_is_arg_n 1
-end
-
-
 # options
 complete -c hub -l help -d 'show help'
 complete -c hub -n '__fish_no_arguments' -l version -d 'print the version'
 
 # subcommand
-complete -f -c hub -n '__fish_is_subcommand' -a alias -d "[hub] show shell instructions for wrapping git"
-complete -f -c hub -n '__fish_is_subcommand' -a browse -d "[hub] browse the project on GitHub"
-complete -f -c hub -n '__fish_is_subcommand' -a compare -d "[hub] lookup commit in GitHub Status API"
-complete -f -c hub -n '__fish_is_subcommand' -a create -d "[hub] create new repo on GitHub for the current project"
-complete -f -c hub -n '__fish_is_subcommand' -a fork -d "[hub] fork origin repo on GitHub"
-complete -f -c hub -n '__fish_is_subcommand' -a pull-request -d "[hub] open a pull request on GitHub"
-complete -f -c hub -n '__fish_is_subcommand' -a ci-status -d "[hub] display GitHub Status information for a commit"
+complete -f -c hub -n '__fish_use_subcommand' -a alias -d "[hub] show shell instructions for wrapping git"
+complete -f -c hub -n '__fish_use_subcommand' -a browse -d "[hub] browse the project on GitHub"
+complete -f -c hub -n '__fish_use_subcommand' -a compare -d "[hub] lookup commit in GitHub Status API"
+complete -f -c hub -n '__fish_use_subcommand' -a create -d "[hub] create new repo on GitHub for the current project"
+complete -f -c hub -n '__fish_use_subcommand' -a fork -d "[hub] fork origin repo on GitHub"
+complete -f -c hub -n '__fish_use_subcommand' -a pull-request -d "[hub] open a pull request on GitHub"
+complete -f -c hub -n '__fish_use_subcommand' -a ci-status -d "[hub] display GitHub Status information for a commit"
 
 # alias
 complete -x -c hub -n '__fish_seen_subcommand_from alias' -s s -a 'bash zsh sh ksh csh fish' -d 'output shell script suitable for eval'
